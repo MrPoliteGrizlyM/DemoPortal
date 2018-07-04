@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="{% static "css/mystyle.css" %}" >
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
     <link rel="stylesheet" href="{% static "bootstrap-4/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "css/flickity.css" %}">
 
@@ -15,7 +15,7 @@
 
     <nav class="navbar navbar-light bg-info">
 
-      <a class="navbar-brand" href="/home">
+      <a class="navbar-brand text-light" href="/home">
         <img src="{% static "images/logo.png"%}" alt="">
         INVESTMENT PORTAL
       </a>
@@ -25,7 +25,7 @@
 
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: black;">ENG</a>
+        <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ENG</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">RUS</a>
           <div class="dropdown-divider"></div>
@@ -101,6 +101,8 @@
 
 
 {% block content %}{% endblock %}
+
+
 
 
 

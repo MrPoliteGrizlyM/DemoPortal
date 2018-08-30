@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
-from Login.views import login, home
+from django.conf.urls import url, include
+from DemoPortal import views
+from Login import views as login_views
+
 
 urlpatterns = [
+    url(r'^$', views.home_redirect, name="home_redirect"),
     path('admin/', admin.site.urls),
-    url(r'^login/', login, name='login'),
-    url(r'^home/', home, name='home'),
+    url(r'^home/', include('Login.urls')),
+    url(r'^logout/$', login_views.logout_user, name='logout')
+
 ]

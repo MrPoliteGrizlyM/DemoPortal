@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+<title>Registration</title>
+
+{% endblock %}
+
+{% block content %}
+
+  {% if registered %}
+
+    <h1>Thank you for registering!</h1>
+    <a href="/">Back to home page</a>
+
+  {% else %}
+
+  <h1 class='text-red'>{{ message }}</h1>
+
+    <form method="post"  >
+
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit">Register</button>
+
+    </form>
+
+
+
+  {% endif %}
+
+{% endblock %}

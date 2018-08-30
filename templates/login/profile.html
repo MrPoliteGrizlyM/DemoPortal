@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+<title>Profile</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+
+  <h1>Hi, {{ user }}</h1>
+  <p>
+    Your email is: {{ user.email }}
+  </p>
+
+  <a href="/home/profile/edit">Edit profile</a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+<title>Profile edit</title>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post"  >
+
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <br>
+  <button type="submit">Change</button>
+
+</form>
+
+{% endblock %}

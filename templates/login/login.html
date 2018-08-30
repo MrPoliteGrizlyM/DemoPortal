@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles%}
 
+
+{% block head %}
+  <title>Login</title>
+{% endblock %}
 {% block content %}
      <div class="container-fluid" >
        <div class="row">
@@ -11,8 +15,35 @@
 
          <div class="col-6 text-center height-login login-form">
 
+           <form class="form-signin" method="post" action="{% url 'user_login' %}">
+             <img class="mb-4" src="{% static "images/logo.png" %}" alt="">
+             <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+             <p class="text-danger">{{ message }}</p>
+             {% csrf_token %}
 
-           <form class="form-signin">
+             <label for="id_username" class="sr-only">Username</label>
+
+             <label for="id_password" class="sr-only">Password</label>
+
+             <input name="username" class="form-control" placeholder="Username" required autofocus>
+
+             <input name="password" type="password" class="form-control" placeholder="Password" required>
+
+
+             <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+
+             <button class="btn btn-lg btn-primary btn-block mb-3" type="submit"> Login </button>
+
+             <a href="{% url 'reset_password' %}" class="text-danger">Forget password?</a>
+
+           </form>
+
+            <!---
+           <form class="form-signin" method="post">
              <img class="mb-4" src="{% static "images/logo.png" %}" alt="">
              <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
              <label for="inputEmail" class="sr-only">Email address</label>
@@ -32,6 +63,7 @@
             <a href="" class="text-danger">Forget password?</a>
 
           </form>
+        -->
 
 
          </div>

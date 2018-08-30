@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html lang="en" dir="ltr">
   <head>
+
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="{% static "css/index.css" %}">
     <link rel="stylesheet" href="{% static "bootstrap-4/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "css/flickity.css" %}">
 
-
-    <title>Login Page</title>
+    {% block head %}{% endblock %}
   </head>
   <body>
 
     <nav class="navbar navbar-light bg-info">
 
-      <a class="navbar-brand text-light" href="/home">
+      <a class="navbar-brand text-light" href="{% url 'home' %}">
         <img src="{% static "images/logo.png"%}" alt="">
         INVESTMENT PORTAL
       </a>
@@ -50,13 +50,23 @@
 
    <form class="form-inline">
 
-     <a href="/login">
+    {% if user.is_authenticated %}
+      <a href="{% url 'profile' %}" class="">
+        <img src="{% static "images/user.png"%}" alt="" class="sm-pic">
+      </a>
+        <a href="{% url 'logout' %}">
+          <button class="btn btn-info my-2 my-sm-0" type="button">Logout</button>
+        </a>
+    {% else %}
+
+     <a href="{% url 'user_login' %}">
        <button class="btn btn-info my-2 my-sm-0" type="button">Login</button>
      </a>
-    <a href="#">
+    <a href="{% url 'register' %}">
       <button class="btn btn-info my-2 my-sm-0" type="button">Sign up</button>
     </a>
 
+    {% endif %}
    </form>
 
 

@@ -145,3 +145,11 @@ MEDIA_URL = '/media/'
 LOGIN_URL = "/home/login"
 
 LOGIN_REDIRECT_URL = "/home/"
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_USE_TLS = True

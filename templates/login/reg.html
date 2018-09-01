@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block content %}
+<div class="container height-login">
+
 
   {% if registered %}
 
@@ -16,19 +18,32 @@
 
   {% else %}
 
-  <h1 class='text-red'>{{ message }}</h1>
+  <p class='text-danger'>{{ message }}</p>
 
     <form method="post"  >
 
       {% csrf_token %}
-      {{ form.as_p }}
 
-      <button type="submit">Register</button>
+      {% for field in form %}
+      <div class="form-group" style="width: 500px;">
+            {{ field.label }}:
+            {{ field }}
+
+            {% if field.label == 'Password' %}
+              
+            {% else %}
+              <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+
+      </div>
+      {% endfor %}
+
+      <button class="btn btn-lg btn-primary" type="submit"> Sign up </button>
 
     </form>
 
 
 
   {% endif %}
-
+</div>
 {% endblock %}

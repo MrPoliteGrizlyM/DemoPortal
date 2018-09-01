@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Login.forms import RegForm, EditForm
+from Login.forms import RegForm, EditForm, PasswordReset
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth import (update_session_auth_hash,
@@ -90,6 +90,7 @@ def change_password(request): # TODO: rewrite as register
         form = PasswordChangeForm(user=request.user)
         return render(request, 'login/change_password.html', {'form': form})
 
-
+# TODO: Complete view
 def reset_password(request):
-    return render(request, 'login/reset_password.html')
+    form = PasswordReset()
+    return render(request, 'registration/password_reset_form.html',{"form":form})

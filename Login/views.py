@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from Login.forms import RegForm, EditForm, PasswordReset
+from Login.forms import RegForm, EditForm, PasswordReset, PasswordForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth import (update_session_auth_hash,
@@ -9,6 +9,7 @@ from django.contrib.auth import (update_session_auth_hash,
                                  )
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -61,10 +62,12 @@ def register(request):
 
     })
 
+@login_required
 def profile(request):
     args = {"user" : request.user}
     return render(request, 'login/profile.html', args)
 
+@login_required
 def edit_profile(request): # TODO: rewrite as register
     if request.method == 'POST':
         form = EditForm(request.POST, instance=request.user)
@@ -77,9 +80,10 @@ def edit_profile(request): # TODO: rewrite as register
         form = EditForm(instance=request.user)
         return render(request, 'login/profile_edit.html', {'form': form})
 
+@login_required
 def change_password(request): # TODO: rewrite as register
     if request.method == 'POST':
-        form = PasswordChangeForm(data=request.POST, user=request.user)
+        form = PasswordForm(data=request.POST, user=request.user)
 
         if form.is_valid():
             form.save()
@@ -87,7 +91,7 @@ def change_password(request): # TODO: rewrite as register
             return redirect('/home/profile')
 
     else:
-        form = PasswordChangeForm(user=request.user)
+        form = PasswordForm(user=request.user)
         return render(request, 'login/change_password.html', {'form': form})
 
 # TODO: Complete view
